@@ -32,7 +32,7 @@ function App() {
   //   setCity(res.results[0].address2)
   //   setTown(res.results[0].address3)
   // }
-  const getAddress = async (url: string)  => { // APIからaxios.getしてくる
+  const getAddress = async (url: string) => { // APIからaxios.getしてくる
     return await axios.get(url).then(
       (res) => setAddress(
         res.data.results[0].address1, // それぞれを住所をsetAddress
@@ -48,10 +48,10 @@ function App() {
   // }
   const submit = (e: any) => {
     e.preventDefault();
-    const result = window.confirm("郵便番号"+value+"で検索します。") // 確認ダイアログ
-    if(result === true){
-      if(value.length == 7){ // 入力された郵便番号が七桁かどうか
-        let url = "https://zipcloud.ibsnet.co.jp/api/search?zipcode=" 
+    const result = window.confirm("郵便番号" + value + "で検索します。") // 確認ダイアログ
+    if (result === true) {
+      if (value.length == 7) { // 入力された郵便番号が七桁かどうか
+        let url = "https://zipcloud.ibsnet.co.jp/api/search?zipcode="
         getAddress(url + value)
       }
       console.log(town)
@@ -59,12 +59,14 @@ function App() {
   }
 
   return (
-    <>
-    <Form setValue={setValue} />
-    {(value.length != 7 && value.length != 0) && <p className='text-white'>7桁の郵便番号を入力してください。</p>}
-    <button className="relative z-0 h-12 rounded-full bg-blue-500 px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full after:bg-blue-500 hover:after:scale-x-125 hover:after:scale-y-150 hover:after:opacity-0 hover:after:transition hover:after:duration-500" onClick={submit}>検索</button>
-    <Address town={town} city={city} prefec={prefec} />
-    </>
+    <div className='justify-center items-center w-screen'>
+      <div className='bg-white rounded-lg w-4/5 m-5'>
+        <Form setValue={setValue} />
+        {(value.length != 7 && value.length != 0) && <p className='text-red-600'>7桁の郵便番号を入力してください。</p>}
+        <button className="bg-gray-400 rounded text-white w-4/5 p-2 m-5" onClick={submit}>検索</button>
+      </div>
+      <Address town={town} city={city} prefec={prefec} />
+    </div>
   )
 }
 

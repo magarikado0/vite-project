@@ -9,7 +9,7 @@ const Form = (props: {setValue: Dispatch<SetStateAction<string>>}) => {
     return (
         <form>
             <div>
-                <input type="text" onChange={onChangeValue} />
+                <input className='border-gray-500 rounded border-2 w-4/5 p-2 m-5' type="text" onChange={onChangeValue} />
             </div>
         </form>
     )
